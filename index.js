@@ -7,15 +7,23 @@ const products = require('./app/bamazonCustomer')(connection);
 
 connection.connect((err) => {
   if(err) throw err;
-  // let threadId = `${connection.threadId}`.green
-  console.log(`MySQL connection successful on thred ${connection.threadId}`.green);
+  console.log(`WELCOM TO BAMAZON!`.green);
 });
 
 products.getAllProducts().then((results) => {
-  // console.log("We have our results", results);
-  results.map((product) => {
-    console.log(' WHAT IS OUR PRODUCT', product.item_id);
-  })
-  // var columns = columnify(results, {columns: ['ID', 'PRODUCT NAME', 'DEPARTMENT']})
-  // console.log(columns)
-})
+  const productData = results.map((product) => {
+    const { item_id, product_name, department_name, price, stock_quantity } = product;
+    return ({
+      item_id,
+      product_name,
+      department_name,
+      price,
+      stock_quantity,
+    });
+  });
+  const columns = columnify(productData, {columnSplitter: ' | '});
+  return Promise.resolve(columns);
+}).then((productInfo) => {
+    console.log(productInfo.yellow);
+
+}).catch((err) => console.log('errrr', err))
