@@ -1,0 +1,26 @@
+{
+  "name": "BAM",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elektro1776/BAM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elektro1776/BAM/issues"
+  },
+  "homepage": "https://github.com/Elektro1776/BAM#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "columnify": "^1.5.4",
+    "inquirer": "^3.2.1",
+    "mysql": "^2.14.0"
+  }
+}
