@@ -8,7 +8,7 @@ const products = require('./app/bamazonCustomer')(connection);
 
 connection.connect((err) => {
   if(err) throw err;
-  console.log(`WELCOM TO BAMAZON!`.green);
+  console.log(`WELCOME TO BAMAZON!`.green);
 });
 // KICK THINGS OF FROM HERE!
 // lets show our user our sweet bamazon store
