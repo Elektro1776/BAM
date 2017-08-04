@@ -5,13 +5,38 @@ const config = require('./config');
 const prompt = require('./app/prompt');
 const connection = mysql.createConnection(config);
 const products = require('./app/bamazonCustomer')(connection);
-
+const manager = require('./app/bamazonManager')(connection);
+const supervisor = require('./app/bamazonSupervisor')(connection);
 connection.connect((err) => {
   if(err) throw err;
   console.log(`WELCOME TO BAMAZON!`.green);
+  init();
 });
 // KICK THINGS OF FROM HERE!
 // lets show our user our sweet bamazon store
+const init = () => {
+  const whoAreYou = {
+    type: 'list',
+    message:" Are you a Customer, Manager, or Supervisor",
+    choices: ['Customer', 'Manager', 'Supervisor'],
+    name: 'user'
+  };
+
+  prompt(whoAreYou).then((answer) => {
+    switch (answer.user) {
+      case 'Customer':
+        Bam();
+        break;
+      case 'Manager':
+        manager.whatToDo();
+        break;
+      case 'Supervisor':
+        break;
+      default:
+
+    }
+  })
+}
 const Bam = function (){
   products.getAllProducts().then((results) => {
     const productData = results.map((product) => {
@@ -32,7 +57,7 @@ const Bam = function (){
 
   }).catch((err) => console.log('errrr', err))
 };
-Bam();
+// Bam();
 function promptForCustomerChoice(allProductInfo) {
   const askUserForProduct = {
     type: 'input',
